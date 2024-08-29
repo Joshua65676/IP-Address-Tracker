@@ -4,7 +4,7 @@ import Arror from '../assets/images/icon-arrow.svg'
 import "leaflet/dist/leaflet.css"
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import icon from './SearchApi';
-// import MarkerPosition from './MapApi';
+import FlyToLocation from './MapApi';
 // import SearchApi from './SearchApi';
 
 interface LocationData {
@@ -24,17 +24,32 @@ interface LocationData {
   // Add more relevant properties
 }
 
+// const FlyToLocation: React.FC<{ locationData: LocationData }> = ({ locationData }) => {
+//   const map = useMap();
+
+//   useEffect(() => {
+//     if (locationData) {
+//       map.flyTo([locationData.location.lat, locationData.location.lng], 13, {
+//         animate: true,
+//       });
+//     }
+//   }, [locationData, map]);
+
+//   return null;
+// };
+
+
 const HomeApi: React.FC = () => {
   const [ipAddress, setIPAddress] = useState<string>('');
   const [locationData, setLocationData] = useState<LocationData | null>(null);
   // const position = [locationData.location.lat, locationData.location.lng]
-  const map = useMap()
+  // const map = useMap()
 
-  useEffect(() => {
-    map.flyTo(position, 13, {
-      animate: true,
-    })
-  }, )
+  // useEffect(() => {
+  //   map.flyTo(position, 13, {
+  //     animate: true,
+  //   })
+  // }, )
 
   useEffect(() => {
     const fetchLocationData = async () => {
@@ -64,10 +79,10 @@ const HomeApi: React.FC = () => {
       );
       setLocationData(response.data);
 
-      if (response.length > 0) {
-        const { lat, lon } = response[0].geometry;
-        setLocationData({ location: { lat, lng: lon } });
-      }
+      // if (response.length > 0) {
+      //   const { lat, lon } = response[0].geometry;
+      //   setLocationData({ location: { lat, lng: lon } });
+      // }
 
       console.log(response.data);
     } catch (error) {
@@ -150,6 +165,7 @@ const HomeApi: React.FC = () => {
          </Popup>
        </Marker>
        {/* <MarkerPosition locationData={locationData}/> */}
+       <FlyToLocation locationData={locationData} />
      </MapContainer>
       ) : (
         <p>Loading map...</p>
