@@ -66,7 +66,7 @@ const HomeApi: React.FC = () => {
      <div className="relative space-y-10 md:-mb-14 sm:-mb-44 z-[10000]">
      
      {/* button search */}
-     <div className="text-center sm:ml-2">
+     <div className="text-center sm:ml-2 xm:ml-5">
       <input
         type="text"
         placeholder="Search for any IP address or domain"
@@ -120,7 +120,7 @@ const HomeApi: React.FC = () => {
        center={[locationData.location.lat, locationData.location.lng]}
        zoom={13}
        scrollWheelZoom={true}
-       className="md:w-[1494px] sm:w-[380px] sm:h-[440px]"
+       className="md:w-[1494px] sm:w-[390px] sm:h-[500px] xm:w-[450px]"
        style={{height: "100%", width: "500p", marginLeft: "-50px"}}
        >
        <TileLayer
