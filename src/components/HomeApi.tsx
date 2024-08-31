@@ -63,15 +63,15 @@ const HomeApi: React.FC = () => {
   return (
     <div className=''>
     
-     <div className="relative space-y-10 md:-mb-14 sm:-mb-44" style={{zIndex:10000}}>
+     <div className="relative space-y-10 md:-mb-14 sm:-mb-44 z-[10000]">
      
      {/* button search */}
-     <div className="text-center ">
+     <div className="text-center sm:ml-2">
       <input
         type="text"
         placeholder="Search for any IP address or domain"
         value={ipAddress}
-        className="h-10 pl-5 rounded-xl md:w-2/6 sm:w-[337px] sm:-ml-3"
+        className="h-10 pl-5 rounded-xl md:w-2/6 sm:w-[311px] sm:-ml-6"
         onChange={(e) => setIPAddress(e.target.value)}
       />
       <button onClick={handleSearch}>
@@ -114,13 +114,14 @@ const HomeApi: React.FC = () => {
       }
     </div>
                   {/* Map Container */}
-    <div className='ml-1 -mb-10 sm:w-[750px] ' style={{height: "550px", width:"1500px"}}>
+    <div className='ml-1 -mb-10 md:w-[] md:h-[470px] sm:h-[440px]'>
       {locationData ? (
      <MapContainer
        center={[locationData.location.lat, locationData.location.lng]}
        zoom={13}
        scrollWheelZoom={true}
-       style={{height: "100%", width: "1500px", marginLeft: "-50px"}}
+       className="md:w-[1494px] sm:w-[380px] sm:h-[440px]"
+       style={{height: "100%", width: "500p", marginLeft: "-50px"}}
        >
        <TileLayer
          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

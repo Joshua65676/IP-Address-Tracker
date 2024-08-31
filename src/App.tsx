@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className="">
+      <div className="overflow-y-hidden">
           <div className="absolute -z-10">
             <img src={BackgroundImg} alt="BackgroundImg" className="object-cover w-screen md:h-60 sm:h-80"/>
           </div>
