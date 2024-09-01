@@ -122,7 +122,7 @@ const HomeApi: React.FC = () => {
        center={[locationData.location.lat, locationData.location.lng]}
        zoom={13}
        scrollWheelZoom={true}
-       className="md:w-[1494px] sm:w-[390px] sm:h-[150px] xm:w-[450px] sm:mb-40"
+       className="md:w-[1494px] sm:w-[398px] sm:h-[150px] xm:w-[450px] sm:mb-40"
        style={{height: "150%", width: "500p", marginLeft: "-50px"}}
        >
        <TileLayer
