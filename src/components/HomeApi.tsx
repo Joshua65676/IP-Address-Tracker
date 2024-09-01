@@ -32,9 +32,10 @@ const HomeApi: React.FC = () => {
   useEffect(() => {
     const fetchLocationData = async () => {
       try {
-        const apiKey = import.meta.env.VITE_API_KEY;
+        // const apiKey = import.meta.env.VITE_API_KEY;
+        const apikey = "at_NToCrBcY8QEo2E9poaBlfZ4f3QwTQ"
         const response = await axios.get(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress&domain=`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=${apikey}&ipAddress&domain=`
         );
         setLocationData(response.data);
       } catch (error) {
@@ -48,9 +49,10 @@ const HomeApi: React.FC = () => {
     //  Search Click
   const handleSearch = async () => {
     try {
-      const apiKey = import.meta.env.VITE_API_KEY;
+      // const apiKey = import.meta.env.VITE_API_KEY;
+      const apikey = "at_NToCrBcY8QEo2E9poaBlfZ4f3QwTQ"
       const response = await axios.get(
-      `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress&domain=${ipAddress}`
+      `https://geo.ipify.org/api/v2/country,city?apiKey=${apikey}&ipAddress&domain=${ipAddress}`
       );
       setLocationData(response.data);
 
