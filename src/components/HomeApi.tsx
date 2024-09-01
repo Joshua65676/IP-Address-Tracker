@@ -4,6 +4,7 @@ import Arror from '../assets/images/icon-arrow.svg'
 import "leaflet/dist/leaflet.css"
 import { MapContainer, TileLayer } from 'react-leaflet'
 import FlyToLocation from './MapApi';
+// import dotenv from 'dotenv'
 
 interface LocationData {
   ip: string;
@@ -26,12 +27,12 @@ interface LocationData {
 const HomeApi: React.FC = () => {
   const [ipAddress, setIPAddress] = useState<string>('');
   const [locationData, setLocationData] = useState<LocationData | null>(null);
+  // dotenv.config();
 
   useEffect(() => {
     const fetchLocationData = async () => {
       try {
-        // const apiKey = "process.env.REACT_APP_API_KRY"
-        const apiKey = "at_sk0QSyrIG6A6C3ewU938L7ju1kj4b"
+        const apiKey = import.meta.env.VITE_API_KEY;
         const response = await axios.get(
         `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress&domain=`
         );
@@ -47,8 +48,7 @@ const HomeApi: React.FC = () => {
     //  Search Click
   const handleSearch = async () => {
     try {
-      // const apiKey = "process.env.REACT_APP_API_KRY"
-      const apiKey = "at_sk0QSyrIG6A6C3ewU938L7ju1kj4b"
+      const apiKey = import.meta.env.VITE_API_KEY;
       const response = await axios.get(
       `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress&domain=${ipAddress}`
       );
@@ -63,7 +63,7 @@ const HomeApi: React.FC = () => {
   return (
     <div className=''>
     
-     <div className="relative space-y-10 md:-mb-14 sm:-mb-44 z-[10000]">
+     <div className="relative space-y-10 md:-mb-14 sm:-mb-48 z-[10000]">
      
      {/* button search */}
      <div className="text-center sm:ml-2 xm:ml-5">
@@ -75,7 +75,7 @@ const HomeApi: React.FC = () => {
         onChange={(e) => setIPAddress(e.target.value)}
       />
       <button onClick={handleSearch}>
-        <div className="absolute w-10 h-10 -ml-10 -mt-[27px] bg-black rounded-r-xl hover:bg-VeryDarkGray">
+        <div className="absolute w-10 h-10 -ml-10 lg:-mt-[27px] sm:-mt-[26.5px] xm:-mt-[26.5px] bg-black rounded-r-xl hover:bg-VeryDarkGray">
           <img src={Arror} alt='arror' className="w-4 mt-2.5 ml-3"/>
         </div>
       </button>
@@ -109,19 +109,19 @@ const HomeApi: React.FC = () => {
         </div>
        )
        : (
-        <p>Loading location...</p>
+        <p className='text-lg font-semibold text-white'>Loading location...</p>
        )
       }
     </div>
                   {/* Map Container */}
-    <div className='ml-1 -mb-10 md:w-[] md:h-[470px] sm:h-[440px]'>
+    <div className='ml-1 lg:-mb-10 md:w-[] md:h-[470px] sm:h-[440px] sm:mb-32 xm:mb-32'>
       {locationData ? (
      <MapContainer
        center={[locationData.location.lat, locationData.location.lng]}
        zoom={13}
        scrollWheelZoom={true}
-       className="md:w-[1494px] sm:w-[390px] sm:h-[500px] xm:w-[450px]"
-       style={{height: "100%", width: "500p", marginLeft: "-50px"}}
+       className="md:w-[1494px] sm:w-[390px] sm:h-[150px] xm:w-[450px] sm:mb-40"
+       style={{height: "150%", width: "500p", marginLeft: "-50px"}}
        >
        <TileLayer
          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -130,7 +130,9 @@ const HomeApi: React.FC = () => {
        <FlyToLocation locationData={locationData} />
      </MapContainer>
       ) : (
-        <p>Loading map...</p>
+        <div className='lg:flex sm:hidden xm:hidden lg:ml-[640px]'>
+          <p className='text-lg font-semibold text-white'>Loading map...</p>
+        </div>
       )}
      </div>
     </div>
